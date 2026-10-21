@@ -1,0 +1,222 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#101828">
+    <title>Flyo | Travel Intelligence</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="/static/script.js" defer></script>
+</head>
+<body>
+    <div class="app-shell">
+        <aside class="sidebar">
+            <a class="brand" href="#">
+                <span class="brand-icon">F</span>
+                <span>flyo<span class="brand-dot">.</span></span>
+            </a>
+
+            <p class="nav-label">WORKSPACE</p>
+            <button class="nav-item active" data-section="flights">
+                <span>✈</span> Flight search
+            </button>
+            <button class="nav-item" data-section="reconciliation">
+                <span>⇄</span> Reconciliation
+            </button>
+
+            <div class="sidebar-bottom">
+                <span class="status-dot"></span>
+                <span>Travel API workspace</span>
+                <span class="online-label">LOCAL</span>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="topbar">
+                <div>
+                    <p class="eyebrow">TRAVEL OPERATIONS</p>
+                    <h1 id="page-title">Flight search</h1>
+                </div>
+                <div class="api-status">
+                    <span class="status-dot"></span>
+                    <span id="api-status-text">Checking API...</span>
+                </div>
+            </header>
+
+            <section id="flights-section" class="page-section">
+                <div class="hero">
+                    <div class="hero-copy">
+                        <span class="hero-tag">YOUR TRAVEL WORKSPACE</span>
+                        <h2>Where will you<br>go <span>next?</span></h2>
+                        <p>Find the right flight with a simple, budget-aware search.</p>
+                    </div>
+                    <div class="hero-art" aria-hidden="true">
+                        <div class="orbit orbit-one"></div>
+                        <div class="orbit orbit-two"></div>
+                        <div class="plane">✈</div>
+                        <div class="art-star star-one">✦</div>
+                        <div class="art-star star-two">✧</div>
+                    </div>
+                </div>
+
+                <div class="panel search-panel">
+                    <div class="section-heading">
+                        <div>
+                            <h3>Search flights</h3>
+                            <p>Explore available sample flights for your route.</p>
+                        </div>
+                        <span class="pill">DEMO DATA</span>
+                    </div>
+
+                    <form id="flight-form">
+                        <div class="form-grid">
+                            <label class="field">
+                                <span>FROM · AIRPORT CODE</span>
+                                <input id="origin" name="origin"
+                                    type="text" placeholder="HYD" value="HYD"
+                                    maxlength="3" required>
+                            </label>
+
+                            <label class="field">
+                                <span>TO · AIRPORT CODE</span>
+                                <input id="destination" name="destination"
+                                    type="text" placeholder="DEL" value="DEL"
+                                    maxlength="3" required>
+                            </label>
+
+                            <label class="field">
+                                <span>TRAVEL DATE</span>
+                                <input id="travel-date" name="travel_date"
+                                    type="date" required>
+                            </label>
+
+                            <label class="field">
+                                <span>MAXIMUM BUDGET (₹)</span>
+                                <input id="max-price" name="max_price"
+                                    type="number" min="0" step="1"
+                                    placeholder="8000">
+                            </label>
+                        </div>
+
+                        <button class="primary-button" type="submit">
+                            <span>Search flights</span><span>→</span>
+                        </button>
+                    </form>
+                </div>
+
+                <div class="results-header">
+                    <div>
+                        <p class="eyebrow">SEARCH RESULTS</p>
+                        <h3 id="flight-results-title">Ready when you are</h3>
+                    </div>
+                    <span id="flight-count" class="result-count">0 flights</span>
+                </div>
+
+                <div id="flight-results" class="results-list">
+                    <div class="empty-state">
+                        <span class="empty-icon">✈</span>
+                        <h3>Your next journey starts here</h3>
+                        <p>Enter your route and select Search flights to see results.</p>
+                    </div>
+                </div>
+
+                <p id="flight-message" class="message" role="status"></p>
+            </section>
+
+            <section id="reconciliation-section" class="page-section hidden">
+                <div class="intro-card">
+                    <span class="intro-icon">⇄</span>
+                    <div>
+                        <p class="eyebrow">DATA QUALITY</p>
+                        <h2>Booking reconciliation</h2>
+                        <p>Compare your booking against a supplier record and identify differences.</p>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <div class="section-heading">
+                        <div>
+                            <h3>Compare records</h3>
+                            <p>Enter both records. Booking IDs identify the record but aren't compared as a field in the current backend logic.</p>
+                        </div>
+                        <span class="pill">RECORD CHECK</span>
+                    </div>
+
+                    <form id="reconciliation-form">
+                        <div class="record-grid">
+                            <div class="record-card">
+                                <h4>Your booking</h4>
+                                <label class="field">
+                                    <span>BOOKING ID</span>
+                                    <input id="booking-id" value="BK101" required>
+                                </label>
+                                <label class="field">
+                                    <span>PASSENGER</span>
+                                    <input id="booking-passenger" value="Ravi Kumar" required>
+                                </label>
+                                <label class="field">
+                                    <span>FLIGHT NUMBER</span>
+                                    <input id="booking-flight" value="FY101" required>
+                                </label>
+                                <label class="field">
+                                    <span>AMOUNT (₹)</span>
+                                    <input id="booking-amount" type="number" min="0" value="6500" required>
+                                </label>
+                                <label class="field">
+                                    <span>STATUS</span>
+                                    <select id="booking-status">
+                                        <option value="confirmed">Confirmed</option>
+                                        <option value="pending">Pending</option>
+                                        <option value="cancelled">Cancelled</option>
+                                    </select>
+                                </label>
+                            </div>
+
+                            <div class="record-card">
+                                <h4>Supplier record</h4>
+                                <label class="field">
+                                    <span>BOOKING ID</span>
+                                    <input id="supplier-id" value="BK101" required>
+                                </label>
+                                <label class="field">
+                                    <span>PASSENGER</span>
+                                    <input id="supplier-passenger" value="Ravi Kumar" required>
+                                </label>
+                                <label class="field">
+                                    <span>FLIGHT NUMBER</span>
+                                    <input id="supplier-flight" value="FY101" required>
+                                </label>
+                                <label class="field">
+                                    <span>AMOUNT (₹)</span>
+                                    <input id="supplier-amount" type="number" min="0" value="7000" required>
+                                </label>
+                                <label class="field">
+                                    <span>STATUS</span>
+                                    <select id="supplier-status">
+                                        <option value="confirmed">Confirmed</option>
+                                        <option value="pending">Pending</option>
+                                        <option value="cancelled">Cancelled</option>
+                                    </select>
+                                </label>
+                            </div>
+                        </div>
+
+                        <button class="primary-button" type="submit">
+                            <span>Compare records</span><span>→</span>
+                        </button>
+                    </form>
+                </div>
+
+                <div id="reconciliation-results" aria-live="polite"></div>
+                <p id="reconciliation-message" class="message" role="status"></p>
+            </section>
+
+            <footer>
+                <span>FLYO · TRAVEL INTELLIGENCE</span>
+                <span>Learning prototype · Sample flight data only</span>
+            </footer>
+        </main>
+    </div>
+</body>
+</html>
