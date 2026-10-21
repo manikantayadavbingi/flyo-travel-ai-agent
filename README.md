@@ -1,46 +1,37 @@
+# Flyo Travel AI Agent
 
-# Flyo Travel Agent
-
-A web-based travel operations prototype built with Python, FastAPI, HTML, CSS, and JavaScript.
-
-The application demonstrates flight search and booking reconciliation workflows that can help automate repetitive travel operations tasks.
+A travel-assistance web application built with Python and FastAPI. This project demonstrates flight search, travel expense reconciliation, REST API development, and automated testing as a foundation for a future AI-powered travel agent.
 
 ## Features
 
 ### 1. Flight Search
-- Search flights by origin and destination.
-- Filter results by travel date.
-- Apply an optional maximum budget.
-- Validate search inputs.
-- Display matching sample flight results.
+- Search for flights by origin, destination, and travel date.
+- Filter available sample flights by budget.
+- Display matching flight details, including flight number, price, and route.
+- Validate search inputs and return helpful error messages.
 
-### 2. Booking Reconciliation
-- Compare booking records with supplier records.
-- Check passenger names, flight numbers, amounts, and booking statuses.
-- Detect missing fields and value mismatches.
-- Display reconciliation results through the website.
+### 2. Travel Expense Reconciliation
+- Compare booking records against supplier records.
+- Identify mismatches in passenger details, flight number, amount, and booking status.
+- Report missing or inconsistent information.
 
-### 3. Backend API
-- FastAPI endpoints for flight search and reconciliation.
-- Pydantic request validation.
-- Error handling for invalid requests.
-- Health-check endpoint.
+### 3. Web Interface
+- Simple browser-based interface built with HTML, CSS, and JavaScript.
+- Connects to the FastAPI backend through HTTP endpoints.
+- Displays flight search and reconciliation results.
 
-### 4. Automated Tests
-- Unit tests for flight search.
-- Unit tests for booking reconciliation.
-- Validation of successful matches and mismatch scenarios.
+### 4. Testing
+- Automated unit tests for flight search and reconciliation logic.
+- Input validation and mismatch detection checks.
 
-## Technology Stack
+## Tech Stack
 
-- **Python** — business logic and data processing
-- **FastAPI** — backend API framework
-- **Pydantic** — request validation
-- **HTML** — webpage structure
-- **CSS** — styling and responsive layout
-- **JavaScript** — frontend interactions and API requests
-- **Uvicorn** — local development server
-- **unittest** — automated testing
+- **Language:** Python
+- **Backend:** FastAPI
+- **Data validation:** Pydantic
+- **Frontend:** HTML, CSS, JavaScript
+- **Testing:** Python `unittest`
+- **Version control:** Git and GitHub
 
 ## Project Structure
 
@@ -53,7 +44,6 @@ flyo-travel-ai-agent/
 ├── test_reconciliation.py
 ├── requirements.txt
 ├── README.md
-├── .gitignore
 └── static/
     ├── index.html
     ├── style.css
@@ -65,79 +55,95 @@ flyo-travel-ai-agent/
 ### Prerequisites
 
 - Python 3.10 or newer
-- pip
+- Git
+- Visual Studio Code (recommended)
 
-### Installation
+### 1. Clone the repository
 
-1. Clone the repository:
+```bash
+git clone https://github.com/manikantayadavbingi/flyo-travel-ai-agent.git
+cd flyo-travel-ai-agent
+```
 
-   ```bash
-   git clone YOUR_GITHUB_REPOSITORY_URL
-   ```
+### 2. Create a virtual environment
 
-2. Navigate to the project directory:
+**Windows PowerShell:**
 
-   ```bash
-   cd flyo-travel-ai-agent
-   ```
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+```
 
-3. Create a virtual environment:
+If PowerShell blocks virtual environment activation, you can use Command Prompt and run:
 
-   ```bash
-   python -m venv .venv
-   ```
+```bat
+.venv\Scripts\activate.bat
+```
 
-4. Activate the virtual environment.
+### 3. Install dependencies
 
-   **Windows PowerShell:**
+```bash
+python -m pip install -r requirements.txt
+```
 
-   ```powershell
-   .\.venv\Scripts\Activate.ps1
-   ```
-
-5. Install dependencies:
-
-   ```bash
-   python -m pip install -r requirements.txt
-   ```
-
-### Run the Application
-
-Start the development server:
+### 4. Start the application
 
 ```bash
 python -m uvicorn main:app --reload
 ```
 
-Open these addresses in your browser:
+### 5. Open the application
 
-- Website: http://127.0.0.1:8000/
-- API documentation: http://127.0.0.1:8000/docs
-- Health check: http://127.0.0.1:8000/api/health
+- **Web application:** http://127.0.0.1:8000/
+- **Interactive API documentation:** http://127.0.0.1:8000/docs
+- **Health check:** http://127.0.0.1:8000/api/health
 
-### Run Tests
+Keep the terminal running while using the application. Press `Ctrl+C` to stop the server.
 
-Run the automated tests with:
+## Running Tests
+
+Run the automated tests from the project root:
 
 ```bash
 python -m unittest -v
 ```
 
-## Important Limitations
+The tests cover the flight search and reconciliation functionality.
 
-- Flight search uses fictional sample data, not live airline inventory.
-- The application does not currently book or ticket real flights.
-- Booking reconciliation operates on records supplied to the application.
-- An LLM-based AI agent and live supplier integrations are planned future improvements.
+## Current Limitations
+
+- Flight search uses sample data and does not retrieve live airline inventory.
+- Flight bookings and payments are not processed.
+- Reconciliation operates on the records provided to the application.
+- The application does not yet use an LLM-powered agent or external AI API.
+- Authentication, persistent database storage, and production deployment are not implemented.
 
 ## Future Improvements
 
-- Integrate a legitimate flight-data provider.
-- Add an LLM-based assistant with controlled tool calling.
-- Store booking and reconciliation history in a database.
-- Add authentication and role-based access control.
-- Deploy the application to a hosted environment.
+- Integrate a large language model (LLM) to understand travel requests in natural language.
+- Build an agent workflow that can interpret user intent, validate requirements, and select appropriate tools.
+- Connect to a real flight search API for live availability and pricing.
+- Add database persistence for bookings and reconciliation records.
+- Introduce structured logging, stronger error handling, and additional automated tests.
+- Add deployment instructions and a live demo.
 
-## Project Goal
+## Learning Objectives
 
-This project demonstrates foundational skills in backend API development, frontend integration, input validation, business logic, and automated testing, with a focus on travel operations automation.
+This project is an opportunity to explore:
+
+- Building REST APIs with FastAPI.
+- Organizing Python code into reusable modules.
+- Validating inputs and handling errors.
+- Writing automated tests.
+- Connecting a frontend to a backend.
+- Using Git and GitHub to manage a software project.
+
+## Disclaimer
+
+This is an educational portfolio project. Flight information is illustrative sample data and must not be treated as real availability or a confirmed fare. The application does not make actual reservations or process payments.
+
+---
+
+**Author:** [manikantayadavbingi](https://github.com/manikantayadavbingi)
+
+**Repository:** [flyo-travel-ai-agent](https://github.com/manikantayadavbingi/flyo-travel-ai-agent)
